@@ -1,0 +1,121 @@
+<html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home - School Tech Fest</title>
+</head>
+<body>
+
+    <header>
+        <h1>School Tech Fest 2025</h1>
+    </header>
+
+    <section>
+        <section class="event-card">
+            <h2>Event Overview</h2>
+            <p>
+                Join us for TechFest 2025, an exciting full-day celebration of innovation, competition, and learning! Experience thrilling coding challenges, intense robotics battles, action-packed gaming tournaments, and fast-paced machine learning sprints. The event kicks off on September 1, 2025, at Innovation Hall, City Tech Campus, running from 9:00 AM to 7:00 PM. Network with fellow students, hobbyists, and industry professionals while exploring cutting-edge technologies and ideas. Participate to showcase your skills, win exciting prizes, and gain valuable experience. Whether you’re a tech enthusiast, a competitive gamer, or simply curious about the latest trends, TechFest 2025 offers something for everyone in a fun, high-energy atmosphere!
+            </p>
+            <h3>Event Date: <b>September 30, 2025</b></h3>
+        
+            <div id="countdown" class="countdown"></div>
+        
+            </div>
+        </section>
+
+
+        <a href="register.html" class="cta">Register Now</a>
+        <a href="about.html" class="cta">About Us</a>
+        <a href="updates.html" class="cta">Updates & Highlights</a>
+
+        <h3>My links:</h3>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/yakew7_/?hl=en" class="social-links" target="_blank"><i class="fa fa-instagram" style="font-size:48px;color:red"></i></a>
+            <a href="https://github.com/yashcoder-gamer" class="social-links" target="_blank"><i class="fa fa-github" style="font-size:48px;color:black"></i></a>
+            <a href="https://www.linkedin.com/in/fiery-gamer-7ab090357" class="social-links" target="_blank"><i class="fa fa-linkedin" style="font-size:48px;color:#1da1f2"></i></a>
+            <a href="https://www.whatsapp.com" class="social-links" target="_blank"><i class="fa fa-whatsapp" style="font-size:48px;color:green"></i></a>
+        </div>
+    </section>
+
+    <!-- Event Details -->
+    <section>
+        <h2>Event Details</h2>
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search competitions/workshops...">
+
+        <div id="eventList">
+            <div class="event-card" data-name="Coding Challenge" data-category="Competition">
+                <h3>Coding Challenge</h3>
+                <p class="event-category">Category: Competition</p>
+                <p>Rules: Solve programming problems within the time limit. Bring your own laptop.</p>
+            </div>
+            <div class="event-card" data-name="Robotics Battle" data-category="Competition">
+                <h3>Robotics Battle</h3>
+                <p class="event-category">Category: Competition</p>
+                <p>Rules: Build and program a robot to compete in challenges. Teams of max 4 members.</p>
+            </div>
+            <div class="event-card" data-name="Game Development Workshop" data-category="Workshop">
+                <h3>Game Development Workshop</h3>
+                <p class="event-category">Category: Workshop</p>
+                <p>Rules: Learn Unity basics and create a small game. Open to all skill levels.</p>
+            </div>
+            <div class="event-card" data-name="AI & Machine Learning" data-category="Workshop">
+                <h3>AI & Machine Learning</h3>
+                <p class="event-category">Category: Workshop</p>
+                <p>Rules: Introduction to AI concepts with hands-on examples in Python.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+<script>
+    // Countdown Timer
+    const eventDate = new Date("September 30, 2025 00:00:00").getTime();
+    const countdownElement = document.getElementById("countdown");
+
+    setInterval(() => {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (distance < 0) {
+            countdownElement.innerHTML = "The event has started!";
+        }
+    }, 1000);
+
+// Search Filter
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    let filter = this.value.toLowerCase();
+    let cards = document.querySelectorAll("#eventList .event-card"); // target only event list cards
+
+    cards.forEach(card => {
+        let name = card.getAttribute("data-name").toLowerCase();
+        let category = card.getAttribute("data-category").toLowerCase();
+        if (name.includes(filter) || category.includes(filter)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+
+    // Show success popup if redirected from registration
+    document.addEventListener("DOMContentLoaded", function() {
+        if (localStorage.getItem("registrationSuccess") === "true") {
+            alert("✅ Registration Successful!");
+            localStorage.removeItem("registrationSuccess");
+        }
+    });
+</script>
+
+
+</body>
+</html>

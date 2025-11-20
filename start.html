@@ -1,0 +1,76 @@
+<html>
+<head>
+    <link rel="stylesheet" href="start.css">
+</head>
+
+<body>
+    <div class="neumorphic neumorphic-card">
+        <img src="neslogo.jpeg" alt="NES International School Logo" class="logo">
+        <h1>Welcome</h1>
+        <input type="text" class="neumorphic neumorphic-input" placeholder="Username" id="username">
+        <input type="password" class="neumorphic neumorphic-input" placeholder="Password" id="password">
+
+        <div id="usernameError" class="error">Please enter your username</div>
+        <div id="passwordError" class="error">Please enter your password</div>
+        <div id="loginError" class="error">Invalid login credentials</div>
+
+        <div class="button-container">
+            <button onclick="signUp()">Sign Up</button>
+            <button onclick="logIn()">Log In</button>
+        </div>
+    </div>
+
+    <script>
+        function signUp() {
+            let username = document.getElementById("username").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let valid = true;
+
+            // Username validation
+            if (username === "") {
+                document.getElementById("usernameError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("usernameError").style.display = "none";
+            }
+
+            // Password validation
+            if (password === "") {
+                document.getElementById("passwordError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("passwordError").style.display = "none";
+            }
+
+            // If both fields are filled, go to next page
+            if (valid) {
+                window.location.href = "main.html";
+            }
+        }
+
+        function logIn() {
+            let username = document.getElementById("username").value.trim().toLowerCase();
+            let password = document.getElementById("password").value.trim().toLowerCase();
+
+            // Hide previous errors
+            document.getElementById("usernameError").style.display = "none";
+            document.getElementById("passwordError").style.display = "none";
+            document.getElementById("loginError").style.display = "none";
+
+            if (username === "" || password === "") {
+                if (username === "") document.getElementById("usernameError").style.display = "block";
+                if (password === "") document.getElementById("passwordError").style.display = "block";
+                return;
+            }
+
+            // Only accept yash/kewlani OR design/summative
+            if ((username === "yash" && password === "kewlani") || 
+                (username === "design" && password === "summative")) {
+                window.location.href = "main.html";
+            } else {
+                document.getElementById("loginError").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

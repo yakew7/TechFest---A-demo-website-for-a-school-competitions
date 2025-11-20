@@ -1,0 +1,91 @@
+<html>
+<head>
+    <link rel="stylesheet" href="register.css">
+    <title>Event Registration</title>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Event Registration</h2>
+        <form id="registrationForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name" oninput="this.value = this.value.toUpperCase()">
+            <div id="nameError" class="error">Please enter your name</div>
+
+            <label for="school">School</label>
+            <input type="text" id="school" placeholder="Enter your school" oninput="this.value = this.value.toUpperCase()">
+            <div id="schoolError" class="error">Please enter your school</div>
+
+            <label for="event">Select Event</label>
+            <select id="event">
+                <option value="">--Choose an event--</option> 
+                <option value="Coding Challenge">Coding Challenge</option>
+                <option value="Robotics Battle">Robotics Battle</option>
+                <option value="Game Development Workshop">Game Development Workshop</option>
+                <option value="AI & Machine Learning">AI & Machine Learning</option>
+            </select>
+            <div id="eventError" class="error">Please select an event</div>
+
+            <label for="contact">Contact Number</label>
+            <input type="text" id="contact" placeholder="Enter your contact number">
+            <div id="contactError" class="error">Please enter a valid 10-digit number</div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            // STOP the browser's default submit so JS can control the flow
+            event.preventDefault();
+        
+            let isValid = true;
+        
+            // Name validation
+            const name = document.getElementById("name").value.trim();
+            if (name === "") {
+                document.getElementById("nameError").style.display = "block";
+                isValid = false;
+            } else {
+                document.getElementById("nameError").style.display = "none";
+            }
+        
+            // School validation
+            const school = document.getElementById("school").value.trim();
+            if (school === "") {
+                document.getElementById("schoolError").style.display = "block";
+                isValid = false;
+            } else {
+                document.getElementById("schoolError").style.display = "none";
+            }
+        
+            // Event validation
+            const eventSelection = document.getElementById("event").value;
+            if (eventSelection === "") {
+                document.getElementById("eventError").style.display = "block";
+                isValid = false;
+            } else {
+                document.getElementById("eventError").style.display = "none";
+            }
+        
+            // Contact validation (only numbers, length 10)
+            const contact = document.getElementById("contact").value.trim();
+            if (!/^\d{10}$/.test(contact)) {
+                document.getElementById("contactError").style.display = "block";
+                isValid = false;
+            } else {
+                document.getElementById("contactError").style.display = "none";
+            }
+        
+            // If invalid, stop
+            if (!isValid) return;
+        
+            // If valid redirect to home
+            localStorage.setItem("registrationSuccess", "true");
+            window.location.href = "main.html";
+        });
+        </script>
+        
+
+</body>
+</html>
