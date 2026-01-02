@@ -6,7 +6,7 @@ Yash Kewlani
 
 ## How to Open
 1. Download and unzip the project folder.
-2. Open **start.html** in any modern web browser (Chrome, Firefox, Edge, Safari).
+2. Open **index.html** in any modern web browser (Chrome, Firefox, Edge, Safari).
 3. Either sign up or login through the follwing user credentials
    **username**- yash **password**- kewlani
    **username**- design **password**- summative
